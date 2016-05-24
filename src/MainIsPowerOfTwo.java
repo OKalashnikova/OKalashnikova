@@ -15,7 +15,10 @@ public class MainIsPowerOfTwo {
     }
 
     static boolean isPowerOfTwo(int value) {
-        return false;
+        if (value <= 0) {
+            return false;
+        }
+        return (value & value - 1) == 0;
     }
 
     static void print(int value) {

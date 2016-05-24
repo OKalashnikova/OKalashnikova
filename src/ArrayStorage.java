@@ -1,8 +1,11 @@
+import java.util.Objects;
+
 /**
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    Resume[] storage = new Resume[10000];
+    Resume[] storage = new Resume[100000];
+    int size;
 
     void clear() {
     }
@@ -11,6 +14,13 @@ public class ArrayStorage {
     }
 
     Resume get(String uuid) {
+        Objects.requireNonNull(uuid, "uuis must not be null");
+        for (int i = 0; i < size; i++) {
+            Resume resume = storage[i];
+            if (uuid.equals(resume.uuid)) {
+                return resume;
+            }
+        }
         return null;
     }
 
@@ -25,6 +35,6 @@ public class ArrayStorage {
     }
 
     int size() {
-        return 0;
+        return size;
     }
 }
