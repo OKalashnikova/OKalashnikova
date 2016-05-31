@@ -3,3 +3,7 @@ logs/
 
 #txt-files
 docs/*.txt
+
+.idea
+out
+*.iml
