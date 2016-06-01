@@ -11,8 +11,8 @@ public class MainArray {
         r2.uuid = "uuid2";
         Resume r3 = new Resume();
         r3.uuid = "uuid3";
-        Resume r4 = new Resume();
-        r4.uuid = "uuid4";
+//        Resume r4 = new Resume();
+//        r4.uuid = "uuid4";
 
         ARRAY_STORAGE.save(r1);
         ARRAY_STORAGE.save(r2);
