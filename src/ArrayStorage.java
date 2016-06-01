@@ -5,7 +5,7 @@ import java.util.Objects;
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[100000];
-    int size=3;
+    int size;
 
     void clear() {
     }
@@ -25,6 +25,11 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
+//        for(int i = 0; i<storage.length; i++){
+//            if(storage[i] !=null && uuid.equals(storage[i].uuid)){
+//                storage[i] = null;
+//            }
+//        }
     }
 
     /**
