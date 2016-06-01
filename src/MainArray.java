@@ -17,7 +17,7 @@ public class MainArray {
         ARRAY_STORAGE.save(r1);
         ARRAY_STORAGE.save(r2);
         ARRAY_STORAGE.save(r3);
-        ARRAY_STORAGE.save(r4);
+ //       ARRAY_STORAGE.save(r4);
 
 //        System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.uuid));
 //        System.out.println("Size: " + ARRAY_STORAGE.size());
