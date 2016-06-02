@@ -48,20 +48,17 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        int sizeGetAll = size();
-        Resume[] result = new Resume[sizeGetAll];
-        for (int i = 0; i < sizeGetAll; i++) {
+        Resume[] result = new Resume[size()];
+        for (int i = 0; i < size(); i++) {
             if (storage[i] != null) {
-                result[i] = storage[i];
-            }
-//            if (storage[i] == null) {
-//                break;
-//            }
-            System.out.println(result[i]);
-        }
+             int j=0;
+                result[j] = storage[i];
+                System.out.println(result[j]);
+                j++;
 
-        return result;
-    }
+        }
+        }
+        return result;}
 
     int size() {
         int size = 0;
