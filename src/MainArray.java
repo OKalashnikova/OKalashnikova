@@ -36,10 +36,8 @@ public class MainArray {
         ARRAY_STORAGE.delete(r1.uuid);
         String sDell = ARRAY_STORAGE.printAll();
         System.out.println(sDell);
-//        ARRAY_STORAGE.clear();
-//        String sClear = ARRAY_STORAGE.printAll();
-//        System.out.println(sClear);
-
+        System.out.println("Size: " + ARRAY_STORAGE.size());
+        ARRAY_STORAGE.clear();
         System.out.println("Size: " + ARRAY_STORAGE.size());
     }
 
