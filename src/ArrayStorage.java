@@ -1,18 +1,24 @@
 import java.util.Objects;
 
+
 /**
  * Array based storage for Resumes
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[100000];
-    int size;
+    //int size;
+
 
     void clear() {
+        for (int i = 0; i < storage.length; i++) {
+            storage[i] = null;
+        }
+
     }
 
     void save(Resume r) {
-        for(int i =0; i<storage.length; i++) {
-            if(storage[i] ==null) {
+        for (int i = 0; i < storage.length; i++) {
+            if (storage[i] == null) {
                 storage[i] = r;
                 return;
             }
@@ -21,9 +27,9 @@ public class ArrayStorage {
 
     Resume get(String uuid) {
         Objects.requireNonNull(uuid, "uuis must not be null");
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < storage.length; i++) {
             Resume resume = storage[i];
-            if (uuid.equals(resume.uuid)) {
+            if (resume != null && uuid.equals(resume.uuid)) {
                 return resume;
             }
         }
@@ -31,21 +37,48 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-//        for(int i = 0; i<storage.length; i++){
-//            if(storage[i] !=null && uuid.equals(storage[i].uuid)){
-//                storage[i] = null;
-//            }
-//        }
+        for (int i = 0; i < storage.length; i++) {
+            if (storage[i] != null && uuid.equals(storage[i].uuid)) {
+                storage[i] = null;
+            }
+        }
     }
 
     /**
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        return new Resume[0];
+        Resume[] result = new Resume[storage.length];
+        for(int i=0; i<storage.length; i++){
+             if (storage[i] != null){
+            result[i] = storage[i];}
+            if(storage[i]==null)
+            {break;}
+            System.out.println(result[i]);
+        }
+
+        return result;
     }
 
     int size() {
+        int size = 0;
+        for (int i = 0; i < storage.length; i++) {
+            if (storage[i] != null) {
+                size++;
+            }
+        }
         return size;
     }
+
+    public String printAll() {
+        StringBuffer sb = new StringBuffer();
+        for (Resume resume : storage) {
+            sb.append(resume);
+            sb.append(" ");
+        }
+        return sb.toString();
+    }
+
+
 }
+
