@@ -17,10 +17,14 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-        for (int i = 0; i < storage.length; i++) {
-            if (storage[i] == null) {
-                storage[i] = r;
-                return;
+        if (size() == storage.length) {
+            System.out.println("К сожалению, место на сервере для хранения резюме закончилось");
+        } else {
+            for (int i = 0; i < storage.length; i++) {
+                if (storage[i] == null) {
+                    storage[i] = r;
+                    return;
+                }
             }
         }
     }
@@ -40,6 +44,8 @@ public class ArrayStorage {
         for (int i = 0; i < storage.length; i++) {
             if (storage[i] != null && uuid.equals(storage[i].uuid)) {
                 storage[i] = null;
+                storage[i] = storage[size()];
+                storage[size() - 1] = null;
             }
         }
     }
@@ -49,9 +55,10 @@ public class ArrayStorage {
      */
     Resume[] getAll() {
         Resume[] result = new Resume[size()];
+        Objects.requireNonNull(result, "uuis must not be null");
         int j = 0;
         for (int i = 0; i < storage.length; i++) {
-             if (storage[i] != null) {
+            if (storage[i] != null) {
                 result[j] = storage[i];
                 System.out.println(result[j]);
                 j++;
