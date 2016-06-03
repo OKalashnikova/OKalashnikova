@@ -38,6 +38,8 @@ public class MainArray {
         String s = ARRAY_STORAGE.printAll();
         System.out.println(s);
         ARRAY_STORAGE.getAll();
+        String sGetA = ARRAY_STORAGE.printAll();
+        System.out.println(sGetA);
         System.out.println("Size: " + ARRAY_STORAGE.size());
         ARRAY_STORAGE.delete(r1.uuid);
         String sDell = ARRAY_STORAGE.printAll();
