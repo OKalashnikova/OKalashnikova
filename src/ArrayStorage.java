@@ -49,11 +49,11 @@ public class ArrayStorage {
      */
     Resume[] getAll() {
         Resume[] result = new Resume[size()];
-        for (int i = 0; i < size(); i++) {
+        for (int i = 0; i < storage.length; i++) {
             if (storage[i] != null) {
              int j=0;
                 result[j] = storage[i];
-                System.out.println(result[j]);
+                //System.out.println(result[j]);
                 j++;
 
         }
@@ -78,7 +78,6 @@ public class ArrayStorage {
         }
         return sb.toString();
     }
-
 
 }
 
