@@ -17,6 +17,9 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
+                if(size()==storage.lengt){
+        System.out.println("К сожалению, место на сервере для хранения резюме закончилось");
+                }else{
         for (int i = 0; i < storage.length; i++) {
             if (storage[i] == null) {
                 storage[i] = r;
