@@ -50,15 +50,15 @@ public class ArrayStorage {
     Resume[] getAll() {
         Resume[] result = new Resume[size()];
         for (int i = 0; i < storage.length; i++) {
-            int j=0;
+            int j = 0;
             if (storage[i] != null) {
                 result[j] = storage[i];
                 System.out.println(result[j]);
                 j++;
-
+            }
         }
-        }
-        return result;}
+        return result;
+    }
 
     int size() {
         int size = 0;
