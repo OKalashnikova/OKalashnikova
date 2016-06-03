@@ -5,7 +5,7 @@ import java.util.Objects;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    Resume[] storage = new Resume[100000];
+    Resume[] storage = new Resume[5];
     //int size;
 
 
