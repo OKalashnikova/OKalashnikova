@@ -10,7 +10,7 @@ public class ArrayStorage {
 
 
     void clear() {
-        for (int i = 0; i < storage.length; i++) {
+        for (int i = 0; i < size(); i++) {
             storage[i] = null;
         }
 
@@ -59,7 +59,6 @@ public class ArrayStorage {
         for (int i = 0; i < storage.length; i++) {
             if (storage[i] != null) {
                 result[j] = storage[i];
-                System.out.println(result[j]);
                 j++;
             }
         }
@@ -74,15 +73,6 @@ public class ArrayStorage {
             }
         }
         return size;
-    }
-
-    public String printAll() {
-        StringBuffer sb = new StringBuffer();
-        for (Resume resume : storage) {
-            sb.append(resume);
-            sb.append(" ");
-        }
-        return sb.toString();
     }
 
 }
