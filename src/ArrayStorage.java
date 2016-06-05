@@ -10,7 +10,8 @@ public class ArrayStorage {
 
 
     void clear() {
-        for (int i = 0; i < storage.length; i++) {
+        int size=size();
+        for (int i = 0; i < size; i++) {
             storage[i] = null;
         }
 
