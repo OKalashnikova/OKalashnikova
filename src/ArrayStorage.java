@@ -5,7 +5,7 @@ import java.util.Objects;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    Resume[] storage = new Resume[7];
+    Resume[] storage = new Resume[10000];
     //int size;
 
 
@@ -18,28 +18,22 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-        int size = size();
-        if (size == storage.length) {
+        if (size() == storage.length) {
             System.out.println("К сожалению, место на сервере для хранения резюме закончилось");
         }
-        if (size==0){
-            storage[0]=r;
-        }else {
-            for (int i = 0; i < size; i++) {
-                if (storage[i] == null) {
-                    storage[i] = r;
-                    return;
-                }
-            }
-        }
+        storage[size()] = r;
+
     }
 
     Resume get(String uuid) {
+        int size= size();
         Objects.requireNonNull(uuid, "uuis must not be null");
-        for (int i = 0; i < storage.length; i++) {
-            Resume resume = storage[i];
-            if (resume != null && uuid.equals(resume.uuid)) {
-                return resume;
+        for (int i = 0; i < size; i++) {
+            if (storage[i] != null && uuid.equals(storage[i].uuid)) {
+                return storage[i];
+            }
+            else{
+                System.out.println("К сожалению, резюме такого нет");
             }
         }
         return null;
@@ -59,9 +53,10 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
+        int size= size();
         Resume[] result = new Resume[size()];
         int j = 0;
-        for (int i = 0; i < storage.length; i++) {
+        for (int i = 0; i < size; i++) {
             if (storage[i] != null) {
                 result[j] = storage[i];
                 j++;
