@@ -5,7 +5,7 @@ import java.util.Objects;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    Resume[] storage = new Resume[10000];
+    Resume[] storage = new Resume[7];
     //int size;
 
 
@@ -18,10 +18,14 @@ public class ArrayStorage {
     }
 
     void save(Resume r) {
-        if (size() == storage.length) {
+        int size = size();
+        if (size == storage.length) {
             System.out.println("К сожалению, место на сервере для хранения резюме закончилось");
-        } else {
-            for (int i = 0; i < storage.length; i++) {
+        }
+        if (size==0){
+            storage[0]=r;
+        }else {
+            for (int i = 0; i < size; i++) {
                 if (storage[i] == null) {
                     storage[i] = r;
                     return;
@@ -42,7 +46,8 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-        for (int i = 0; i < storage.length; i++) {
+        int size = size();
+        for (int i = 0; i < size; i++) {
             if (storage[i] != null && uuid.equals(storage[i].uuid)) {
                 storage[i] = storage[size()-1];
                 storage[size()-1] = null;
@@ -55,7 +60,6 @@ public class ArrayStorage {
      */
     Resume[] getAll() {
         Resume[] result = new Resume[size()];
-        Objects.requireNonNull(result, "uuis must not be null");
         int j = 0;
         for (int i = 0; i < storage.length; i++) {
             if (storage[i] != null) {
@@ -77,4 +81,3 @@ public class ArrayStorage {
     }
 
 }
-
