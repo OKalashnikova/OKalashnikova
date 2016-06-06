@@ -32,10 +32,8 @@ public class ArrayStorage {
             if (storage[i] != null && uuid.equals(storage[i].uuid)) {
                 return storage[i];
             }
-            else{
-                System.out.println("К сожалению, резюме такого нет");
-            }
         }
+        System.out.println("К сожалению, резюме такого нет");
         return null;
     }
 
