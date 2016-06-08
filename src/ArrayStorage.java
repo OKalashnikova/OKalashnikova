@@ -17,25 +17,30 @@ public class ArrayStorage {
     }
 
 
-//    void save(Resume r) {
-//        if (size() == storage.length) {
-//            System.out.println("К сожалению, место на сервере для хранения резюме закончилось");
-//        }
-//                storage[size()] = r;
-//        }
-
-    void save(Resume r) {
-        if (size() == storage.length) {
-            System.out.println("К сожалению, место на сервере для хранения резюме закончилось");
-        }
+    boolean uuidExist(String uuid) {
+        boolean uuidExist = false;
         for (int i = 0; i < size(); i++) {
-            if (r.equals(storage[i].uuid)) {
-                System.out.println("drugoy id");
+            if(uuid.equals(storage[i].uuid)){
+                uuidExist = true;
                 break;
             }
         }
-        storage[size()] = r;
+        return uuidExist;
     }
+
+    void save(Resume r) {
+        boolean chekIt = uuidExist(r.uuid);
+        if (size() == storage.length) {
+            System.out.println("К сожалению, место на сервере для хранения резюме закончилось");
+        }
+        else if(chekIt == true){
+            System.out.println("Sorry, рехюме с таким id уже существует");
+        }else{
+                storage[size()] = r;}
+        }
+
+
+
 
     Resume get(String uuid) {
         int size = size();
