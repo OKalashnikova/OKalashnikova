@@ -34,7 +34,7 @@ public class ArrayStorage {
             System.out.println("К сожалению, место на сервере для хранения резюме закончилось");
         }
         else if(chekIt == true){
-            System.out.println("Sorry, рехюме с таким id уже существует");
+            System.out.println("Sorry, резюме с таким id уже существует");
         }else{
                 storage[size()] = r;}
         }
