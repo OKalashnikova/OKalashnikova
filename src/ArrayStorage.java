@@ -6,20 +6,21 @@ import java.util.Objects;
  */
 public class ArrayStorage {
     Resume[] storage = new Resume[10000];
-    int size;
+    int size = 0;
 
 
     void clear() {
         for (int i = 0; i < size; i++) {
             storage[i] = null;
         }
+        size = 0;
     }
 
 
     boolean uuidExist(String uuid) {
         boolean uuidExist = false;
         for (int i = 0; i < size; i++) {
-            if(uuid.equals(storage[i].uuid)){
+            if (uuid.equals(storage[i].uuid)) {
                 uuidExist = true;
                 break;
             }
@@ -28,8 +29,8 @@ public class ArrayStorage {
     }
 
     void update(Resume r) {
-        for(int i = 0; i<size; i++){
-            if(r.uuid.equals(storage[i].uuid)){
+        for (int i = 0; i < size; i++) {
+            if (r.uuid.equals(storage[i].uuid)) {
                 storage[i] = r;
                 return;
             }
@@ -39,25 +40,22 @@ public class ArrayStorage {
 
 
     void save(Resume r) {
-        boolean chekIt = uuidExist(r.uuid);
         if (size == storage.length) {
             System.out.println("К сожалению, место на сервере для хранения резюме закончилось");
-        }
-        else if(chekIt == true){
+        } else if (uuidExist(r.uuid)) {
             System.out.println("Sorry, резюме с таким id уже существует");
-        }else{
-                storage[size] = r;
-        size++;
+        } else {
+            storage[size] = r;
+            size++;
         }
-        }
-
-
+    }
 
 
     Resume get(String uuid) {
         Objects.requireNonNull(uuid, "uuis must not be null");
         for (int i = 0; i < size; i++) {
-            if (storage[i] != null && uuid.equals(storage[i].uuid)) {
+            if (
+                    uuid.equals(storage[i].uuid)) {
                 return storage[i];
             }
         }
@@ -66,14 +64,15 @@ public class ArrayStorage {
     }
 
     void delete(String uuid) {
-
         for (int i = 0; i < size; i++) {
-            if (storage[i] != null && uuid.equals(storage[i].uuid)) {
+            if (uuid.equals(storage[i].uuid)) {
                 storage[i] = storage[size - 1];
                 storage[size - 1] = null;
                 size--;
+                return;
             }
         }
+        System.out.println("Резюме с таким id " + uuid + " не существует");
     }
 
     /**
