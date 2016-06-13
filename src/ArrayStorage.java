@@ -28,6 +28,17 @@ public class ArrayStorage {
         return uuidExist;
     }
 
+    void update(Resume r) {
+        for(int i = 0; i<size(); i++){
+            if(r.uuid.equals(storage[i].uuid)){
+                storage[i] = r;
+                return;
+            }
+        }
+        System.out.println("Резюме с таким id " + r + " не существует");
+    }
+
+
     void save(Resume r) {
         boolean chekIt = uuidExist(r.uuid);
         if (size() == storage.length) {
