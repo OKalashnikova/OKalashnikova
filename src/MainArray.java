@@ -26,7 +26,7 @@ public class MainArray {
                     printAll();
                     break;
                 case "size":
-                    System.out.println(ARRAY_STORAGE.size());
+                    System.out.println(ARRAY_STORAGE.size);
                     break;
                 case "save":
                     Resume r = new Resume();
@@ -108,16 +108,15 @@ public class MainArray {
 //        System.out.println("Get r3: " + ARRAY_STORAGE.get(r3.uuid));
 //        System.out.println("Get r4: " + ARRAY_STORAGE.get(r4.uuid));
 //        System.out.println("Get r5: " + ARRAY_STORAGE.get(r5.uuid));
-//        System.out.println("Size: " + ARRAY_STORAGE.size());
+//        System.out.println("Size: " + ARRAY_STORAGE.size);
 ////        System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
 //
 //
 //        ARRAY_STORAGE.delete("uuid2");
-//        System.out.println("Size: " + ARRAY_STORAGE.size());
+//        System.out.println("Size: " + ARRAY_STORAGE.size);
 //        printAll();
-//        ARRAY_STORAGE.update("uuid7");
 //        ARRAY_STORAGE.clear();
-//        System.out.println("Size: " + ARRAY_STORAGE.size());
+//        System.out.println("Size: " + ARRAY_STORAGE.size);
 //
 //
 //
