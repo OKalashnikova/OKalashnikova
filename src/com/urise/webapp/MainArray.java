@@ -1,10 +1,15 @@
+package com.urise.webapp;
+
+import com.urise.webapp.model.Resume;
+import com.urise.webapp.storage.ArrayStorage;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 
 /**
- * Test for ArrayStorage
+ * Test for com.urise.webapp.storage.ArrayStorage
  */
 public class MainArray {
     static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
@@ -30,7 +35,7 @@ public class MainArray {
                     break;
                 case "save":
                     Resume r = new Resume();
-                    r.uuid = params[1];
+                    r.setUuid(params[1]);
                     ARRAY_STORAGE.save(r);
                     printAll();
                     break;
@@ -47,7 +52,7 @@ public class MainArray {
                     break;
                 case "update":
                     r = new Resume();
-                    r.uuid = (params[1]);
+                    r.setUuid(params[1]);
                     ARRAY_STORAGE.update(r);
                     printAll();
                     break;
@@ -80,21 +85,21 @@ public class MainArray {
 //import static com.sun.deploy.config.JREInfo.getAll;
 
 /**
- * Test for com.urise.webapp.storage.ArrayStorage
+ * Test for com.urise.webapp.storage.com.urise.webapp.storage.ArrayStorage
  */
-//public class MainArray {
-//    static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
+//public class com.urise.webapp.MainArray {
+//    static final com.urise.webapp.storage.ArrayStorage ARRAY_STORAGE = new com.urise.webapp.storage.ArrayStorage();
 //
 //    public static void main(String[] args) {
-//        Resume r1 = new Resume();
+//        com.urise.webapp.model.Resume r1 = new com.urise.webapp.model.Resume();
 //        r1.uuid = "uuid1";
-//        Resume r2 = new Resume();
+//        com.urise.webapp.model.Resume r2 = new com.urise.webapp.model.Resume();
 //        r2.uuid = "uuid2";
-//        Resume r3 = new Resume();
+//        com.urise.webapp.model.Resume r3 = new com.urise.webapp.model.Resume();
 //        r3.uuid = "uuid3";
-//        Resume r4 = new Resume();
+//        com.urise.webapp.model.Resume r4 = new com.urise.webapp.model.Resume();
 //        r4.uuid = "uuid4";
-//        Resume r5 = new Resume();
+//        com.urise.webapp.model.Resume r5 = new com.urise.webapp.model.Resume();
 //        r5.uuid = "uuid5";
 //
 //        ARRAY_STORAGE.save(r1);
@@ -124,7 +129,7 @@ public class MainArray {
 //
 //    static void printAll() {
 //        System.out.println("\nGet All");
-//        for (Resume r : ARRAY_STORAGE.getAll()) {
+//        for (com.urise.webapp.model.Resume r : ARRAY_STORAGE.getAll()) {
 //            System.out.println(r);
 //        }
 //    }
