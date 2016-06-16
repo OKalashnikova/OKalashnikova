@@ -20,6 +20,15 @@ public class ArrayStorage {
         size = 0;
     }
 
+    int getIndex(String uuid) {
+        for (int i = 0; i < size; i++) {
+            if (uuid.equals(storage[i].getUuid())) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
 
     public boolean uuidExist(String uuid) {
         boolean uuidExist = false;
@@ -32,6 +41,7 @@ public class ArrayStorage {
         return uuidExist;
     }
 
+
     public void update(Resume r) {
         for (int i = 0; i < size; i++) {
             if (r.getUuid().equals(storage[i].getUuid())) {
@@ -41,6 +51,7 @@ public class ArrayStorage {
         }
         System.out.println("Резюме с таким id " + r + " не существует");
     }
+
 
 
     public void save(Resume r) {
@@ -56,27 +67,29 @@ public class ArrayStorage {
 
 
     public Resume get(String uuid) {
+        int index = getIndex(uuid);
         Objects.requireNonNull(uuid, "uuis must not be null");
-        for (int i = 0; i < size; i++) {
-            if (
-                    uuid.equals(storage[i].getUuid())) {
-                return storage[i];
-            }
+
+        if (index == -1) {
+            System.out.println("К сожалению, резюме такого нет");
+        } else {
+            return storage[index];
         }
-        System.out.println("К сожалению, резюме такого нет");
         return null;
     }
 
+
     public void delete(String uuid) {
-        for (int i = 0; i < size; i++) {
-            if (uuid.equals(storage[i].getUuid())) {
-                storage[i] = storage[size - 1];
-                storage[size - 1] = null;
-                size--;
-                return;
-            }
+        int index = getIndex(uuid);
+        if (index == -1) {
+            System.out.println("Резюме с таким id " + uuid + " не существует");
+        } else {
+            storage[index] = storage[size - 1];
+            storage[size - 1] = null;
+            size--;
+            return;
+
         }
-        System.out.println("Резюме с таким id " + uuid + " не существует");
     }
 
     /**
