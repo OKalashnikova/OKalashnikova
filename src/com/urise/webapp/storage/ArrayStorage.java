@@ -31,16 +31,16 @@ public class ArrayStorage {
     }
 
 
-    public boolean uuidExist(String uuid) {
-        boolean uuidExist = false;
-        for (int i = 0; i < size; i++) {
-            if (uuid.equals(storage[i].getUuid())) {
-                uuidExist = true;
-                break;
-            }
-        }
-        return uuidExist;
-    }
+//    public boolean uuidExist(String uuid) {
+//        boolean uuidExist = false;
+//        for (int i = 0; i < size; i++) {
+//            if (uuid.equals(storage[i].getUuid())) {
+//                uuidExist = true;
+//                break;
+//            }
+//        }
+//        return uuidExist;
+//    }
 
 
 //    public void update(Resume r) {
