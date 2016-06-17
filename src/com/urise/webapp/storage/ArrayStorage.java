@@ -54,15 +54,14 @@ public class ArrayStorage {
 
     public void update(Resume r) {
         int index = getIndex(r.getUuid());
-        if (index==-1) {
+        if (index == -1) {
             System.out.println("Sorry, ID " + r + " doesn't exist");
-        }else{
+        } else {
             storage[index] = r;
             return;
         }
 
     }
-
 
 
     public void save(Resume r) {
@@ -88,7 +87,6 @@ public class ArrayStorage {
         } else {
             return storage[index];
         }
-
     }
 
 
@@ -118,7 +116,7 @@ public class ArrayStorage {
 //            }
 //        }
 //        return result;
-            return Arrays.copyOfRange(storage,0,size);
+        return Arrays.copyOfRange(storage, 0, size);
     }
 
 //    int size() {
