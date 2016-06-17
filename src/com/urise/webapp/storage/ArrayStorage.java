@@ -2,6 +2,7 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 
@@ -42,26 +43,37 @@ public class ArrayStorage {
     }
 
 
+//    public void update(Resume r) {
+//        int index = getIndex(r.getUuid());
+//        if (r.getUuid().equals(storage[index].getUuid())) {
+//            storage[index] = r;
+//            return;
+//        }
+//            System.out.println("Sorry, ID " + r + " doesn't exist");
+//        }
+
     public void update(Resume r) {
-        for (int i = 0; i < size; i++) {
-            if (r.getUuid().equals(storage[i].getUuid())) {
-                storage[i] = r;
-                return;
-            }
+        int index = getIndex(r.getUuid());
+        if (index==-1) {
+            System.out.println("Sorry, ID " + r + " doesn't exist");
+        }else{
+            storage[index] = r;
+            return;
         }
-        System.out.println("Резюме с таким id " + r + " не существует");
+
     }
 
 
 
     public void save(Resume r) {
+        int index = getIndex(r.getUuid());
         if (size == storage.length) {
-            System.out.println("К сожалению, место на сервере для хранения резюме закончилось");
-        } else if (uuidExist(r.getUuid())) {
-            System.out.println("Sorry, резюме с таким id уже существует");
-        } else {
+            System.out.println("Sorry, server is full");
+        } else if (index == -1) {
             storage[size] = r;
             size++;
+        } else {
+            System.out.println("Element with this uuid exist");
         }
     }
 
@@ -71,18 +83,19 @@ public class ArrayStorage {
         Objects.requireNonNull(uuid, "uuis must not be null");
 
         if (index == -1) {
-            System.out.println("К сожалению, резюме такого нет");
+            System.out.println("Element with this uuid doesn't exist");
+            return null;
         } else {
             return storage[index];
         }
-        return null;
+
     }
 
 
     public void delete(String uuid) {
         int index = getIndex(uuid);
         if (index == -1) {
-            System.out.println("Резюме с таким id " + uuid + " не существует");
+            System.out.println("Summary with this uuid " + uuid + " doesn't exist");
         } else {
             storage[index] = storage[size - 1];
             storage[size - 1] = null;
@@ -96,15 +109,16 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     public Resume[] getAll() {
-        Resume[] result = new Resume[size];
-        int j = 0;
-        for (int i = 0; i < size; i++) {
-            if (storage[i] != null) {
-                result[j] = storage[i];
-                j++;
-            }
-        }
-        return result;
+//        Resume[] result = new Resume[size];
+//        int j = 0;
+//        for (int i = 0; i < size; i++) {
+//            if (storage[i] != null) {
+//                result[j] = storage[i];
+//                j++;
+//            }
+//        }
+//        return result;
+            return Arrays.copyOfRange(storage,0,size);
     }
 
 //    int size() {
