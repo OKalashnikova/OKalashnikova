@@ -9,19 +9,18 @@ import java.util.Objects;
 /**
  * Array based storage for Resumes
  */
-public class ArrayStorage {
-    Resume[] storage = new Resume[5];
-    public int size = 0;
+public class ArrayStorage extends AbstractArrayStorage{
+    private static final int STORAGE_LIMIT = 100000;
+    private Resume[] storage = new Resume[STORAGE_LIMIT];
+    private int size = 0;
 
 
     public void clear() {
-        for (int i = 0; i < size; i++) {
-            storage[i] = null;
-        }
+        Arrays.fill(storage, 0, size, null);
         size = 0;
     }
 
-    int getIndex(String uuid) {
+    public int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
             if (uuid.equals(storage[i].getUuid())) {
                 return i;
@@ -43,14 +42,6 @@ public class ArrayStorage {
 //    }
 
 
-//    public void update(Resume r) {
-//        int index = getIndex(r.getUuid());
-//        if (r.getUuid().equals(storage[index].getUuid())) {
-//            storage[index] = r;
-//            return;
-//        }
-//            System.out.println("Sorry, ID " + r + " doesn't exist");
-//        }
 
     public void update(Resume r) {
         int index = getIndex(r.getUuid());
@@ -72,7 +63,7 @@ public class ArrayStorage {
             storage[size] = r;
             size++;
         } else {
-            System.out.println("Element with this uuid exist");
+            System.out.println("Element with this uuid " + r.getUuid()+ " exist");
         }
     }
 
@@ -107,26 +98,8 @@ public class ArrayStorage {
      * @return array, contains only Resumes in storage (without null)
      */
     public Resume[] getAll() {
-//        Resume[] result = new Resume[size];
-//        int j = 0;
-//        for (int i = 0; i < size; i++) {
-//            if (storage[i] != null) {
-//                result[j] = storage[i];
-//                j++;
-//            }
-//        }
-//        return result;
         return Arrays.copyOfRange(storage, 0, size);
     }
 
-//    int size() {
-//        int size = 0;
-//        for (int i = 0; i < storage.length; i++) {
-//            if (storage[i] != null) {
-//                size++;
-//            }
-//        }
-//        return size;
-//    }
 
 }

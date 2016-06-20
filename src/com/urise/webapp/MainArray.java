@@ -88,18 +88,18 @@ public class MainArray {
  * Test for com.urise.webapp.storage.com.urise.webapp.storage.ArrayStorage
  */
 //public class com.urise.webapp.MainArray {
-//    static final com.urise.webapp.storage.ArrayStorage ARRAY_STORAGE = new com.urise.webapp.storage.ArrayStorage();
+//     private final static com.urise.webapp.storage.ArrayStorage ARRAY_STORAGE = new com.urise.webapp.storage.ArrayStorage();
 //
 //    public static void main(String[] args) {
-//        com.urise.webapp.model.Resume r1 = new com.urise.webapp.model.Resume();
+//       final com.urise.webapp.model.Resume r1 = new com.urise.webapp.model.Resume();
 //        r1.uuid = "uuid1";
-//        com.urise.webapp.model.Resume r2 = new com.urise.webapp.model.Resume();
+//       final com.urise.webapp.model.Resume r2 = new com.urise.webapp.model.Resume();
 //        r2.uuid = "uuid2";
-//        com.urise.webapp.model.Resume r3 = new com.urise.webapp.model.Resume();
+//       final com.urise.webapp.model.Resume r3 = new com.urise.webapp.model.Resume();
 //        r3.uuid = "uuid3";
-//        com.urise.webapp.model.Resume r4 = new com.urise.webapp.model.Resume();
+//       final com.urise.webapp.model.Resume r4 = new com.urise.webapp.model.Resume();
 //        r4.uuid = "uuid4";
-//        com.urise.webapp.model.Resume r5 = new com.urise.webapp.model.Resume();
+//       final com.urise.webapp.model.Resume r5 = new com.urise.webapp.model.Resume();
 //        r5.uuid = "uuid5";
 //
 //        ARRAY_STORAGE.save(r1);
