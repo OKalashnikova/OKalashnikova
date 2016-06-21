@@ -68,17 +68,17 @@ public class ArrayStorage extends AbstractArrayStorage{
     }
 
 
-    public Resume get(String uuid) {
-        int index = getIndex(uuid);
-        Objects.requireNonNull(uuid, "uuis must not be null");
-
-        if (index == -1) {
-            System.out.println("Element with this uuid doesn't exist");
-            return null;
-        } else {
-            return storage[index];
-        }
-    }
+//    public Resume get(String uuid) {
+//        int index = getIndex(uuid);
+//        Objects.requireNonNull(uuid, "uuis must not be null");
+//
+//        if (index == -1) {
+//            System.out.println("Element with this uuid doesn't exist");
+//            return null;
+//        } else {
+//            return storage[index];
+//        }
+//    }
 
 
     public void delete(String uuid) {
