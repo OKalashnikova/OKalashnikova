@@ -39,4 +39,9 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     public Resume[] getAll() {
         return new Resume[0];
     }
+
+    @Override
+    public int getSize() {
+        return 0;
+    }
 }

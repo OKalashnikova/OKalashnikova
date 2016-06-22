@@ -14,6 +14,9 @@ public class ArrayStorage extends AbstractArrayStorage{
     private Resume[] storage = new Resume[STORAGE_LIMIT];
     private int size = 0;
 
+    public int getSize() {
+        return size;
+    }
 
     public void clear() {
         Arrays.fill(storage, 0, size, null);
@@ -43,16 +46,16 @@ public class ArrayStorage extends AbstractArrayStorage{
 
 
 
-    public void update(Resume r) {
-        int index = getIndex(r.getUuid());
-        if (index == -1) {
-            System.out.println("Sorry, ID " + r + " doesn't exist");
-        } else {
-            storage[index] = r;
-            return;
-        }
-
-    }
+//    public void update(Resume r) {
+//        int index = getIndex(r.getUuid());
+//        if (index == -1) {
+//            System.out.println("Sorry, ID " + r + " doesn't exist");
+//        } else {
+//            storage[index] = r;
+//            return;
+//        }
+//
+//    }
 
 
     public void save(Resume r) {

@@ -30,4 +30,15 @@ public abstract class AbstractArrayStorage implements Storage{
 
     public abstract int getIndex(String uuid);
 
+    public void update(Resume r) {
+        int index = getIndex(r.getUuid());
+        if (index == -1) {
+            System.out.println("Sorry, ID " + r + " doesn't exist");
+        } else {
+            storage[index] = r;
+            return;
+        }
+
+    }
+
 }
