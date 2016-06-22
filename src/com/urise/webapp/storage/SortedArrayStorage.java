@@ -30,7 +30,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     @Override
     public void save(Resume r) {
         int size = getSize();
-        Arrays.fill(storage,size, size, r);
+        Arrays.fill(storage,size, size+1, r);
         size ++;
     }
 
