@@ -12,16 +12,16 @@ import java.util.Objects;
 public class ArrayStorage extends AbstractArrayStorage{
     private static final int STORAGE_LIMIT = 100000;
     private Resume[] storage = new Resume[STORAGE_LIMIT];
-    private int size = 0;
+//   private int size = 0;
 
-    public int getSize() {
-        return size;
-    }
+//    public int getSize() {
+//        return size;
+//    }
 
-    public void clear() {
-        Arrays.fill(storage, 0, size, null);
-        size = 0;
-    }
+//    public void clear() {
+//        Arrays.fill(storage, 0, size, null);
+//        size = 0;
+//    }
 
     public int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {

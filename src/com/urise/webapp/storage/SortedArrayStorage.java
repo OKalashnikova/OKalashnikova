@@ -8,6 +8,8 @@ import java.util.Arrays;
  * Created by O&J on 20.06.2016.
  */
 public class SortedArrayStorage extends AbstractArrayStorage {
+    protected int size =0;
+
     @Override
     public int getIndex(String uuid) {
         Resume searchKey = new Resume();
@@ -27,7 +29,9 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     public void save(Resume r) {
-
+        int size = getSize();
+        Arrays.fill(storage,size, size, r);
+        size ++;
     }
 
     @Override
@@ -41,7 +45,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    public int getSize() {
-        return 0;
-    }
+    public int getSize(){
+        return size;
+}
 }

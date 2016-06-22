@@ -14,9 +14,11 @@ public abstract class AbstractArrayStorage implements Storage{
     protected Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int size = 0;
 
-    public int size(){
+    @Override
+    public int getSize() {
         return size;
     }
+
 
     public Resume get(String uuid) {
         int index = getIndex(uuid);
@@ -40,5 +42,12 @@ public abstract class AbstractArrayStorage implements Storage{
         }
 
     }
+
+
+    public void clear() {
+        Arrays.fill(storage, 0, size, null);
+        size = 0;
+    }
+
 
 }
