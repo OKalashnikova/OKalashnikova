@@ -100,9 +100,7 @@ public class ArrayStorage extends AbstractArrayStorage{
     /**
      * @return array, contains only Resumes in storage (without null)
      */
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
-    }
+
 
 
 }
