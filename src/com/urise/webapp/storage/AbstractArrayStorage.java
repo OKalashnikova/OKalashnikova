@@ -32,6 +32,8 @@ public abstract class AbstractArrayStorage implements Storage{
 
     public abstract int getIndex(String uuid);
 
+    public abstract void save(Resume r);
+
     public void update(Resume r) {
         int index = getIndex(r.getUuid());
         if (index == -1) {
