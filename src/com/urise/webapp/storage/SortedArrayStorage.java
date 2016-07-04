@@ -9,8 +9,7 @@ import java.util.Arrays;
  */
 public class SortedArrayStorage extends AbstractArrayStorage {
     protected int size = 0;
-    int min = 0;
-    int max = size + 1;
+
 
     @Override
     public int getIndex(String uuid) {
@@ -31,6 +30,8 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     public void save(Resume r) {
+        int min = 0;
+        int max = size + 1;
         String fId = r.getUuid();
         int foundIndex = Integer.parseInt(fId);
         for (; ; ) {
