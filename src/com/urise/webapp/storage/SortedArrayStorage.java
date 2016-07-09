@@ -28,32 +28,60 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     }
 
-    @Override
-    public void save(Resume r) {
+    int insertedIndex() {
+        int index = 0;
+        if (size == 0) {
+            storage[index].getUuid();
+        }
+        return index;
+    }
+
+
+    public int foundIdx(String uuid) {
+        int foundIndex = Integer.parseInt(uuid);
         int min = 0;
-        int max = size + 1;
-        String fId = r.getUuid();
-        int foundIndex = Integer.parseInt(fId);
+        int max = size;
+        int index = 0;
+
+
         for (; ; ) {
             int expectIndex = min + (max - min) / 2;
             String foundMinUuid = storage[expectIndex].getUuid();
             String foundMaxUuid = storage[expectIndex + 1].getUuid();
             int minUuid = Integer.parseInt(foundMinUuid);
             int maxUuid = Integer.parseInt(foundMaxUuid);
-            if (foundIndex > minUuid && foundIndex < maxUuid) {
-                foundIndex = maxUuid;
-                System.arraycopy(storage, foundIndex, storage, foundIndex + 1, size - foundIndex);
-                storage[foundIndex] = r;
+
+            if (size == 0) {
+                index = 0;
+            } else if (foundIndex > minUuid && foundIndex < maxUuid) {
+                cycle(""+minUuid, ""+maxUuid, ""+foundIndex);
                 break;
-            }
-            if (foundIndex < minUuid) {
+            } else if (foundIndex < minUuid) {
                 max = minUuid;
-            }
-            if (foundIndex > maxUuid) {
+            } else if (foundIndex > maxUuid) {
                 min = maxUuid;
             }
-
         }
+        return index;
+    }
+
+    public void cycle(String minUuid, String maxUuid, String foundIndex){
+        int j=getIndex(maxUuid);
+        for(int i=getIndex(minUuid); i<getIndex(maxUuid); i++){
+            if(storage[i]<foundIndex && storage[i+1]>foundIndex){
+                int backindex=i+1;
+                break;
+            }
+        }return;
+
+    }
+
+    @Override
+    public void save(Resume r) {
+        int size = getSize();
+        String uuid = r.getUuid();
+        int indexForSave = foundIdx(uuid);
+        System.arraycopy(storage, indexForSave, storage, indexForSave + 1, size - indexForSave);
     }
 
 
@@ -81,3 +109,65 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 //    System.arraycopy(storage, insertIdx, storage, insertIdx + 1, size - insertIdx);
 //    storage[insertIdx] = r;
 //}
+
+
+//package storage;
+//
+//        import model.Resume;
+//
+//        import java.util.Arrays;
+//
+//public class SortedArrayStorage extends AbstractArrayStorage {
+//
+//    public void save(Resume r) {
+//        storage[size] = r;
+//        size++;
+//        Arrays.sort(storage, 0, size);
+//    }
+//
+//    public void delete(String uuid) {
+//        int index = getIndex(uuid);
+//        if (index == -1) {
+//            System.out.println("Resume " + uuid + " not exist");
+//        } else {
+//            System.arraycopy(storage, index + 1, storage, index, size);
+//            size--;
+//        }
+//    }
+//
+//
+//    @Override
+//    protected int getIndex(String uuid) {
+//        Resume searchKey = new Resume();
+//        searchKey.setUuid(uuid);
+//        return Arrays.binarySearch(storage, 0, size, searchKey);
+//    }
+//}
+
+//    @Override
+//    public void save(Resume r) {
+//        int min = 0;
+//        int max = size + 1;
+//        String fId = r.getUuid();
+//        int foundIndex = Integer.parseInt(fId);
+//        for (; ; ) {
+//            int expectIndex = min + (max - min) / 2;
+//            String foundMinUuid = storage[expectIndex].getUuid();
+//            String foundMaxUuid = storage[expectIndex + 1].getUuid();
+//            int minUuid = Integer.parseInt(foundMinUuid);
+//            int maxUuid = Integer.parseInt(foundMaxUuid);
+//            if (foundIndex > minUuid && foundIndex < maxUuid) {
+//                foundIndex = maxUuid;
+//                System.arraycopy(storage, foundIndex, storage, foundIndex + 1, size - foundIndex);
+//                storage[foundIndex] = r;
+//                break;
+//            }
+//            if (foundIndex < minUuid) {
+//                max = minUuid;
+//            }
+//            if (foundIndex > maxUuid) {
+//                min = maxUuid;
+//            }
+//
+//        }
+//    }
