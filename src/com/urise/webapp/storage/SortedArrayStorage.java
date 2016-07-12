@@ -80,7 +80,6 @@ public class SortedArrayStorage extends AbstractArrayStorage {
         if (index < 0) {
             System.out.println("Summary with this uuid " + uuid + " doesn't exist");
         } else {
-            //storage[index]=null;
             System.arraycopy(storage, index+1, storage, index, storage.length - index - 1);
             size--;
         }
