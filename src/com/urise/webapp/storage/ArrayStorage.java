@@ -10,8 +10,7 @@ import java.util.Objects;
  * Array based storage for Resumes
  */
 public class ArrayStorage extends AbstractArrayStorage{
-    private static final int STORAGE_LIMIT = 100000;
-    private Resume[] storage = new Resume[STORAGE_LIMIT];
+
 //   private int size = 0;
 
 //    public int getSize() {

@@ -14,7 +14,7 @@ import java.io.InputStreamReader;
  * Test for com.urise.webapp.storage.ArrayStorage
  */
 public class MainArray {
-   // static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
+    // static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
     private final static Storage ARRAY_STORAGE = new SortedArrayStorage();
 
     public static void main(String[] args) throws IOException {
