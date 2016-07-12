@@ -18,10 +18,6 @@ public class SortedArrayStorage extends AbstractArrayStorage {
         return Arrays.binarySearch(storage, 0, size, searchKey);
     }
 
-    @Override
-    public void clear() {
-
-    }
 
     @Override
     public void update(Resume r) {
