@@ -17,10 +17,6 @@ public class ArrayStorage extends AbstractArrayStorage{
 //        return size;
 //    }
 
-//    public void clear() {
-//        Arrays.fill(storage, 0, size, null);
-//        size = 0;
-//    }
 
     public int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
@@ -59,7 +55,7 @@ public class ArrayStorage extends AbstractArrayStorage{
 
     public void save(Resume r) {
         int index = getIndex(r.getUuid());
-        if (size == storage.length) {
+        if (true) {
             System.out.println("Sorry, server is full");
         } else if (index == -1) {
             storage[size] = r;
