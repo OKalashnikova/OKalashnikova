@@ -55,7 +55,7 @@ public class ArrayStorage extends AbstractArrayStorage{
 
     public void save(Resume r) {
         int index = getIndex(r.getUuid());
-        if (true) {
+        if (isStorageFull()) {
             System.out.println("Sorry, server is full");
         } else if (index == -1) {
             storage[size] = r;
