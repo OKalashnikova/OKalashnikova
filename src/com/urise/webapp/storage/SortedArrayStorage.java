@@ -5,9 +5,6 @@ import com.urise.webapp.model.Resume;
 import java.util.Arrays;
 import java.util.Objects;
 
-/**
- * Created by O&J on 20.06.2016.
- */
 
 public class SortedArrayStorage extends AbstractArrayStorage {
 
