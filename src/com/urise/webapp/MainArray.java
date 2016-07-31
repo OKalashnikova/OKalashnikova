@@ -1,7 +1,6 @@
 package com.urise.webapp;
 
 import com.urise.webapp.model.Resume;
-import com.urise.webapp.storage.ArrayStorage;
 import com.urise.webapp.storage.SortedArrayStorage;
 import com.urise.webapp.storage.Storage;
 
@@ -17,7 +16,7 @@ public class MainArray {
     // static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
     private final static Storage ARRAY_STORAGE = new SortedArrayStorage();
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args, String uuid) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             System.out.print("Введите одну из команд - (list | save uuid | delete uuid | get uuid | clear | update uuid | exit): ");
@@ -37,8 +36,7 @@ public class MainArray {
                     System.out.println(ARRAY_STORAGE.getSize());
                     break;
                 case "save":
-                    Resume r = new Resume();
-                    r.setUuid(params[1]);
+                    Resume r = new Resume(uuid);
                     ARRAY_STORAGE.save(r);
                     printAll();
                     break;
@@ -54,8 +52,7 @@ public class MainArray {
                     printAll();
                     break;
                 case "update":
-                    r = new Resume();
-                    r.setUuid(params[1]);
+                    r = new Resume(uuid);
                     ARRAY_STORAGE.update(r);
                     printAll();
                     break;

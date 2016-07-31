@@ -1,5 +1,8 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.exception.ExistStorageException;
+import com.urise.webapp.exception.NotExistStorageException;
+import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
@@ -56,12 +59,14 @@ public class ArrayStorage extends AbstractArrayStorage{
     public void save(Resume r) {
         int index = getIndex(r.getUuid());
         if (isStorageFull()) {
-            System.out.println("Sorry, server is full");
+            throw new StorageException("Storage overflow", r.getUuid());
+            //System.out.println("Sorry, server is full");
         } else if (index == -1) {
             storage[size] = r;
             size++;
         } else {
-            System.out.println("Element with this uuid " + r.getUuid()+ " exist");
+            throw new ExistStorageException(r.getUuid());
+           // System.out.println("Element with this uuid " + r.getUuid()+ " exist");
         }
     }
 
@@ -82,7 +87,8 @@ public class ArrayStorage extends AbstractArrayStorage{
     public void delete(String uuid) {
         int index = getIndex(uuid);
         if (index == -1) {
-            System.out.println("Summary with this uuid " + uuid + " doesn't exist");
+            throw new NotExistStorageException(uuid);
+            //System.out.println("Summary with this uuid " + uuid + " doesn't exist");
         } else {
             storage[index] = storage[size - 1];
             storage[size - 1] = null;
