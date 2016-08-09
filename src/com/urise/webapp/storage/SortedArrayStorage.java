@@ -20,16 +20,16 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     public void save(Resume r) {
         if (isStorageFull())
             System.out.println("Storage overflow!");
-        else if (getIndex(r.getUuid()) > -1)
+        else if (getIndex(r.getUuid("uuid1")) > -1)
             System.out.println("Resume " + r + " already exist!");
         else {
-            int index = binaryInsert(r.getUuid());
+            int index = binaryInsert(r.getUuid("uuid1"));
             if (!Objects.equals(index, -1)) {
                 System.arraycopy(storage, index, storage, index + 1, storage.length - index - 1);
                 storage[index] = r;
                 size++;
             } else
-                System.out.println("this value \'" + r.getUuid() + "\' is not a number for id!");
+                System.out.println("this value \'" + r.getUuid("uuid1") + "\' is not a number for id!");
         }
     }
 
@@ -45,7 +45,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
         int curIn;
         while (true) {
             curIn = (upperBound + lowerBound) / 2;
-            if (Integer.parseInt(storage[curIn].getUuid()) < insertKey) {
+            if (Integer.parseInt(storage[curIn].getUuid("uuid1")) < insertKey) {
                 lowerBound = curIn + 1; // its in the upper
                 if (lowerBound > upperBound)
                     return curIn + 1;

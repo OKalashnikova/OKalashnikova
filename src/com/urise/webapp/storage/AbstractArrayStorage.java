@@ -4,7 +4,6 @@ import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 
 /**
@@ -41,9 +40,9 @@ public abstract class AbstractArrayStorage implements Storage {
     public abstract void delete(String uuid);
 
     public void update(Resume r) {
-        int index = getIndex(r.getUuid());
+        int index = getIndex(r.getUuid("uuid1"));
         if (index < 0) {
-            throw new NotExistStorageException(r.getUuid());
+            throw new NotExistStorageException(r.getUuid("uuid1"));
             //System.out.println("Sorry, ID " + r + " doesn't exist");
         } else {
             storage[index] = r;

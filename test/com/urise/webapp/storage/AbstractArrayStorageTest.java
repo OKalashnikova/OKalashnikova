@@ -18,7 +18,7 @@ public abstract class AbstractArrayStorageTest {
     private static final String UUID_2 = "uuid2";
     private static final String UUID_3 = "uuid3";
 
-    @Before
+    @Before(storage instanceof ArrayStorage)
     public void setUp() throws Exception {
         storage.clear();
         storage.save(new Resume(UUID_1));

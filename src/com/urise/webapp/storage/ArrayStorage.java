@@ -5,9 +5,6 @@ import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
-import java.util.Arrays;
-import java.util.Objects;
-
 
 /**
  * Array based storage for Resumes
@@ -23,7 +20,7 @@ public class ArrayStorage extends AbstractArrayStorage{
 
     public int getIndex(String uuid) {
         for (int i = 0; i < size; i++) {
-            if (uuid.equals(storage[i].getUuid())) {
+            if (uuid.equals(storage[i].getUuid("uuid1"))) {
                 return i;
             }
         }
@@ -57,15 +54,15 @@ public class ArrayStorage extends AbstractArrayStorage{
 
 
     public void save(Resume r) {
-        int index = getIndex(r.getUuid());
+        int index = getIndex(r.getUuid("uuid1"));
         if (isStorageFull()) {
-            throw new StorageException("Storage overflow", r.getUuid());
+            throw new StorageException("Storage overflow", r.getUuid("uuid1"));
             //System.out.println("Sorry, server is full");
         } else if (index == -1) {
             storage[size] = r;
             size++;
         } else {
-            throw new ExistStorageException(r.getUuid());
+            throw new ExistStorageException(r.getUuid("uuid1"));
            // System.out.println("Element with this uuid " + r.getUuid()+ " exist");
         }
     }
