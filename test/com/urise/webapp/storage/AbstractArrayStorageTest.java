@@ -12,13 +12,13 @@ import static org.junit.Assert.*;
  * Created by O&J on 31.07.2016.
  */
 public abstract class AbstractArrayStorageTest {
-    private Storage storage;
-    //private Storage storage = new ArrayStorage();
+    //private Storage storage;
+    private Storage storage = new ArrayStorage();
     private static final String UUID_1 = "uuid1";
     private static final String UUID_2 = "uuid2";
     private static final String UUID_3 = "uuid3";
 
-    @Before(storage instanceof ArrayStorage)
+    @Before
     public void setUp() throws Exception {
         storage.clear();
         storage.save(new Resume(UUID_1));
@@ -33,7 +33,7 @@ public abstract class AbstractArrayStorageTest {
     }
 
     @Test
-    public void get() throws Exception {
+    public void get(Storage storageTest) throws Exception {
 
     }
 

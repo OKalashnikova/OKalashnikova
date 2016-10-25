@@ -26,7 +26,9 @@ public class ArrayStorageTest extends AbstractArrayStorageTest{
     public void save() throws Exception {
         Storage storageTest = new ArrayStorage();
         storageTest.save(new Resume("uuid1"));
-        Assert.assertArrayEquals(storage, storageTest);
+        storageTest.save(new Resume("uuid2"));
+        storageTest.save(new Resume("uuid3"));
+        Assert.assertArrayEquals(storageTest, storage);
         fail("ups");
     }
 
