@@ -31,4 +31,5 @@ public interface Storage {
 
     int getSize();
 
+    void get();
 }
