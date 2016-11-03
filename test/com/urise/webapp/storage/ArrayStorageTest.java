@@ -23,7 +23,7 @@ public class ArrayStorageTest extends AbstractArrayStorageTest{
     public void getIndex() throws Exception {
     }
 
-    @Test//(expected = NullPointerException.class)
+    @Test(expected = NullPointerException.class)
 
     public void get() throws Exception {
 
