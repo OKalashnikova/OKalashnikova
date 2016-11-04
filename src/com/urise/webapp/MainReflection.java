@@ -15,7 +15,7 @@ public class MainReflection {
         System.out.println(field.getName());
         System.out.println(field.get(r));
         field.set(r, "new uuid");
-        // Na 13 minute H/W
+        // Na 13 minute H/W Вызвать метод toString() у резюме через отражение TODO: invoke r.toString via Reflection
         System.out.println(r);
 
     }
