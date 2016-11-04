@@ -23,15 +23,14 @@ public class ArrayStorageTest extends AbstractArrayStorageTest{
     public void getIndex() throws Exception {
     }
 
-    @Test//(expected = NullPointerException.class)
+    @Test(expected = NullPointerException.class)
 
     public void get() throws Exception {
-
         Storage storageTest = new ArrayStorage();
         storageTest.save(new Resume("uuid1"));
         storageTest.save(new Resume("uuid2"));
         storageTest.save(new Resume("uuid3"));
-     //   Assert.assertArrayEquals(storageTest, storage);
+        Assert.assertEquals(storage.getIndex("uuid1"), storageTest.getIndex("uuid1"));
         fail("ups");
     }
 
