@@ -5,7 +5,6 @@ import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
-
 /**
  * Array based storage for Resumes
  */

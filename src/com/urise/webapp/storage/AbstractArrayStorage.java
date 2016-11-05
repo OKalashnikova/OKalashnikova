@@ -48,7 +48,6 @@ public abstract class AbstractArrayStorage implements Storage {
             storage[index] = r;
             return;
         }
-
     }
 
     public Resume[] getAll() {
