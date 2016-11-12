@@ -12,7 +12,6 @@ import java.util.Objects;
 public class ArrayStorage extends AbstractArrayStorage{
 
 //   private int size = 0;
-
 //    public int getSize() {
 //        return size;
 //    }
@@ -52,20 +51,6 @@ public class ArrayStorage extends AbstractArrayStorage{
 //
 //    }
 
-
-    public void save(Resume r) {
-        int index = getIndex(r.getUuid());
-        if (isStorageFull()) {
-            System.out.println("Sorry, server is full");
-        } else if (index == -1) {
-            storage[size] = r;
-            size++;
-        } else {
-            System.out.println("Element with this uuid " + r.getUuid()+ " exist");
-        }
-    }
-
-
 //    public Resume get(String uuid) {
 //        int index = getIndex(uuid);
 //        Objects.requireNonNull(uuid, "uuis must not be null");
@@ -78,18 +63,14 @@ public class ArrayStorage extends AbstractArrayStorage{
 //        }
 //    }
 
+    @Override
+    protected void fillDeletedElement(int index) {
+        storage[index] = storage[size - 1];
+    }
 
-    public void delete(String uuid) {
-        int index = getIndex(uuid);
-        if (index == -1) {
-            System.out.println("Summary with this uuid " + uuid + " doesn't exist");
-        } else {
-            storage[index] = storage[size - 1];
-            storage[size - 1] = null;
-            size--;
-            return;
-
-        }
+    @Override
+    protected void insertElement(Resume r, int index) {
+        storage[size] = r;
     }
 
     /**

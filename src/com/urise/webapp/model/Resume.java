@@ -1,21 +1,33 @@
 package com.urise.webapp.model;
 
+import java.util.UUID;
+
 /**
  * com.urise.webapp.model.com.urise.webapp.model.Resume class
  */
 public class Resume implements Comparable<Resume> {
 
     // Unique identifier
-    private String uuid;
+    private final String uuid;
+
+    public Resume(){
+        this(UUID.randomUUID().toString());
+    }
+// Реализацию первого конструктора делегируем второму
+    // Сохздаютсяметоды со всеми параметрами и потом создаются методы с меньшими параметрами и из них уже выхываются методы, где много параметров
+    public Resume(String uuid) {
+        this.uuid = uuid;
+    }
 
 
     public String getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
+// Когда создаем конструктор для Резюме с вводом uuid - сеттеры уже не нужны. Их можно удалить
+//    public void setUuid(String uuid) {
+//        this.uuid = uuid;
+//    }
 
     @Override
     public boolean equals(Object o) {
