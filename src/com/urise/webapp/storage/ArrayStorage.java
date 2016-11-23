@@ -16,8 +16,17 @@ public class ArrayStorage extends AbstractArrayStorage{
 //        return size;
 //    }
 
+    @Override
+    protected void fillDeletedElement(int index) {
+        storage[index] = storage[size - 1];
+    }
 
-    public int getIndex(String uuid) {
+    @Override
+    protected void insertElement(Resume r, int index) {
+        storage[size] = r;
+    }
+
+    public Integer getSearchKey(String uuid) {
         for (int i = 0; i < size; i++) {
             if (uuid.equals(storage[i].getUuid())) {
                 return i;
@@ -28,15 +37,7 @@ public class ArrayStorage extends AbstractArrayStorage{
 
 
 
-    @Override
-    protected void fillDeletedElement(int index) {
-        storage[index] = storage[size - 1];
-    }
 
-    @Override
-    protected void insertElement(Resume r, int index) {
-        storage[size] = r;
-    }
 
     /**
      * @return array, contains only Resumes in storage (without null)

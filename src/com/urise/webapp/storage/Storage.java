@@ -14,7 +14,7 @@ public interface Storage {
 
     void clear();
 
-    int getIndex(String uuid);
+    Object getSearchKey(String uuid);
 
     void update(Resume r);
 

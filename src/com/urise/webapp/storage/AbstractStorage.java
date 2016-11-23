@@ -1,48 +1,72 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.exception.ExistStorageException;
+import com.urise.webapp.exception.NotExistStorageException;
+import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
+
+import java.util.Arrays;
+
+import static com.urise.webapp.storage.AbstractArrayStorage.STORAGE_LIMIT;
 
 /**
  * Created by OK on 20.11.2016.
  */
-public abstract class AbstractStorage implements Storage{
-    @Override
-    public void clear() {
+public abstract class AbstractStorage implements Storage {
 
-    }
+    public abstract Object getSearchKey (String uuid);
 
-    @Override
-    public int getIndex(String uuid) {
-        return 0;
-    }
+    protected abstract void doUpdate(Resume r, Object searchKey);
 
-    @Override
+    protected abstract boolean isExist(Object searchKey);
+
+    protected abstract void doSave(Resume r, Object searchKey);
+
+    protected abstract void doDelete(Object searchKey);
+
+    protected abstract Resume doGet(Object searchKey);
+
+
+
+
     public void update(Resume r) {
+        Object searchKey = getExistedSearchKey(r.getUuid());
+        doUpdate(r, searchKey);
+        }
 
-    }
-
-    @Override
     public void save(Resume r) {
+        Object searchKey = getNotExistedSearchKey(r.getUuid());
+        doSave(r, searchKey);
+        }
 
-    }
-
-    @Override
-    public Resume get(String uuid) {
-        return null;
-    }
-
-    @Override
     public void delete(String uuid) {
+        Object searchKey = getExistedSearchKey(uuid);
+        doDelete (searchKey);
+        }
 
+    public Resume get(String uuid) {
+        Object searchKey = getExistedSearchKey(uuid);
+        return doGet(searchKey);
     }
 
-    @Override
-    public Resume[] getAll() {
-        return new Resume[0];
+
+
+
+    private Object getExistedSearchKey(String uuid) {
+        Object searchKey = getSearchKey(uuid);
+        if (!isExist(searchKey)) {
+            throw new NotExistStorageException(uuid);
+        }
+        return  searchKey;
     }
 
-    @Override
-    public int getSize() {
-        return 0;
+    private Object getNotExistedSearchKey(String uuid) {
+        Object searchKey = getSearchKey(uuid);
+        if (isExist(searchKey)) {
+            throw new ExistStorageException(uuid);
+        }
+        return searchKey;
     }
+
+
 }
