@@ -45,9 +45,9 @@ public class MainCollections {
         System.out.println(collection.toString());
 
         Map<String, Resume> map = new HashMap<>();
-            map.put(UUID_1, RESUME_1);
-            map.put(UUID_2, RESUME_2);
-            map.put(UUID_3, RESUME_3);
+        map.put(UUID_1, RESUME_1);
+        map.put(UUID_2, RESUME_2);
+        map.put(UUID_3, RESUME_3);
 
         for (String uuid: map.keySet()){ //неправильная итерация
             System.out.println(map.get(uuid));

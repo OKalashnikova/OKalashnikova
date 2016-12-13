@@ -31,7 +31,6 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
 
 
 
-    public abstract Integer getSearchKey(String uuid);
 
     //public abstract void delete(String uuid);
 
@@ -94,6 +93,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage {
     protected abstract void fillDeletedElement(int index);
 
     protected abstract void insertElement(Resume r, int index);
+
+    public abstract Integer getSearchKey(String uuid);
 
     public Resume[] getAll() {
         return Arrays.copyOfRange(storage, 0, size);

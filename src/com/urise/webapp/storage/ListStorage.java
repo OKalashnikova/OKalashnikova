@@ -10,30 +10,96 @@ import java.util.List;
  */
 public class ListStorage extends AbstractStorage{
 
-    private final static String UUID_1 = "uuid1";
-    private static final Resume RESUME_1 = new Resume(UUID_1);
+    private List<Resume> list = new ArrayList<>();
 
-    private final static String UUID_2 = "uuid2";
-    private static final Resume RESUME_2 = new Resume(UUID_2);
-
-    private final static String UUID_3 = "uuid3";
-    private static final Resume RESUME_3 = new Resume(UUID_3);
-
-    private final static String UUID_4 = "uuid4";
-    private static final Resume RESUME_4 = new Resume(UUID_4);
-
-    public static void main(String[] args) {
-        List listStorage = new ArrayList<>();
-        listStorage.add(RESUME_1);
-        listStorage.add(RESUME_2);
-        listStorage.add(RESUME_3);
-        listStorage.add(RESUME_4);
-
-        System.out.println(listStorage.toString());
-
-        listStorage.remove(RESUME_3);
-        System.out.println(listStorage.toString());
-
-        System.out.println(listStorage.indexOf(RESUME_4));
+    @Override
+    public Integer getSearchKey(String uuid) {
+        for(int i = 0; i<list.size(); i++){
+            if(list.get(i).getUuid().equals(uuid)){
+                return  i;
+            }
+        }
+        return  null;
     }
+
+    @Override
+    protected boolean isExist(Object searchKey) {
+        return searchKey !=null;
+    }
+
+    @Override
+    protected void doUpdate(Resume r, Object searchKey) {
+        list.set((Integer)searchKey, r);
+    }
+
+    @Override
+    protected void doSave(Resume r, Object searchKey) {
+        list.add(r);
+    }
+
+    @Override
+    protected Resume doGet(Object searchKey) {
+        return list.get((Integer)searchKey);
+    }
+
+    @Override
+    protected void doDelete(Object searchKey) {
+        list.remove(((Integer) searchKey).intValue());
+    }
+
+    @Override
+    public void clear() {
+        list.clear();
+    }
+
+    @Override
+    public Resume[] getAll() {
+        return list.toArray(new Resume[list.size()]); // пустой массив заполняет нашими значениями
+    }
+
+    @Override
+    public int getSize() {
+        return list.size();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    private final static String UUID_1 = "uuid1";
+//    private static final Resume RESUME_1 = new Resume(UUID_1);
+//
+//    private final static String UUID_2 = "uuid2";
+//    private static final Resume RESUME_2 = new Resume(UUID_2);
+//
+//    private final static String UUID_3 = "uuid3";
+//    private static final Resume RESUME_3 = new Resume(UUID_3);
+//
+//    private final static String UUID_4 = "uuid4";
+//    private static final Resume RESUME_4 = new Resume(UUID_4);
+//
+//    public static void main(String[] args) {
+//        List listStorage = new ArrayList<>();
+//        listStorage.add(RESUME_1);
+//        listStorage.add(RESUME_2);
+//        listStorage.add(RESUME_3);
+//        listStorage.add(RESUME_4);
+//
+//        System.out.println(listStorage.toString());
+//
+//        listStorage.remove(RESUME_3);
+//        System.out.println(listStorage.toString());
+//
+//        System.out.println(listStorage.indexOf(RESUME_4));
+//    }
+
+
 }
