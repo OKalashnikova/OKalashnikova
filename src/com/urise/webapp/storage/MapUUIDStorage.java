@@ -5,6 +5,7 @@ import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,9 +25,10 @@ public class MapUUIDStorage extends AbstractStorage {
         map.clear();
     }
 
+    // bez_ponyatiya... :-(
     @Override
-    public Resume[] getAll() {
-        return new Resume[0];
+    public List<Resume> getAllSorted(){
+        return null;
     }
 
     @Override
@@ -64,4 +66,6 @@ public class MapUUIDStorage extends AbstractStorage {
     protected Resume doGet(Object searchKey) {
         return  map.get(searchKey);
     }
+
+
 }
