@@ -109,6 +109,7 @@ public abstract class AbstractStorageTest {
         storage.save(new Resume());
     }
 
+
 //    @Test(expected = NotExistStorageException.class)
 //    public void updateNotExist() throws Exception {
 //        storage.save(RESUME_1);

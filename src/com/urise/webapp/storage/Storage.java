@@ -28,6 +28,8 @@ public interface Storage {
     void delete(String uuid);
 
     Resume[] getAll();
+    // Return sorted by name
+    // List<Resume> getAllSorted;
 
     int getSize();
 
