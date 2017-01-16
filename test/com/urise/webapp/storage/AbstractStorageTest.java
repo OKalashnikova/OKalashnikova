@@ -14,8 +14,8 @@ import static org.junit.Assert.*;
 /**
  * Created by OK on 12.11.2016.
  */
-public abstract class AbstractStorageTest {
-    private Storage storage;
+public abstract class AbstractStorageTest  {
+    protected Storage storage;
 
     private final static String UUID_1 = "uuid1";
     private static final Resume RESUME_1 = new Resume(UUID_1);
@@ -94,19 +94,6 @@ public abstract class AbstractStorageTest {
     @Test(expected = ExistStorageException.class)
     public void saveExist() throws Exception {
         storage.save(RESUME_1);
-    }
-
-    //TODO remain only for Arrays implementations
-    @Test(expected = StorageException.class)
-    public void saveOverFlow() throws Exception {
-        try {
-            for (int i = 4; i <= AbstractArrayStorage.STORAGE_LIMIT; i++) {
-                storage.save(new Resume());
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        storage.save(new Resume());
     }
 
 
