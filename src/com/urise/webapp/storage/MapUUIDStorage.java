@@ -4,15 +4,12 @@ import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by OK on 10.12.2016.
  */
-public class MapUUIDStorage extends AbstractStorage {
+public class MapUUIDStorage extends AbstractStorage<String> {
 
     private Map<String, Resume> map = new HashMap<>();
 
@@ -26,10 +23,9 @@ public class MapUUIDStorage extends AbstractStorage {
         map.clear();
     }
 
-    // bez_ponyatiya... :-(
     @Override
-    public List<Resume> getAllSorted(){
-        return null;
+    public List<Resume> doCopyAll(){
+        return new ArrayList<>(map.values());
     }
 
     @Override
@@ -38,34 +34,28 @@ public class MapUUIDStorage extends AbstractStorage {
     }
 
     @Override
-    protected void doUpdate(Resume r, Object searchKey) {
-        if (map.containsKey(searchKey)) {
-            map.put((String) searchKey, r);
-        }else{throw new NotExistStorageException((String)searchKey);}
+    protected void doUpdate(Resume r, String uuid) {
+        map.put(uuid, r);
     }
 
     @Override
-    protected boolean isExist(Object searchKey) {
-        return map.containsKey(searchKey);
+    protected boolean isExist(String uuid) {
+        return map.containsKey(uuid);
     }
 
     @Override
-    protected void doSave(Resume r, Object searchKey) {
-    if (map.containsKey(searchKey)){
-        throw new ExistStorageException((String)searchKey);}
-   else
-    {map.put((String)searchKey, r);
-    }
+    protected void doSave(Resume r, String uuid) {
+        map.put(uuid, r);
     }
 
     @Override
-    protected void doDelete(Object searchKey) {
-        map.remove(searchKey);
+    protected void doDelete(String uuid) {
+        map.remove(uuid);
     }
 
     @Override
-    protected Resume doGet(Object searchKey) {
-        return  map.get(searchKey);
+    protected Resume doGet(String uuid) {
+        return  map.get(uuid);
     }
 
 

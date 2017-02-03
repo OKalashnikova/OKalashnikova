@@ -1,11 +1,8 @@
 package com.urise.webapp.storage;
 
 
-import com.urise.webapp.exception.ExistStorageException;
-import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -24,11 +21,11 @@ public abstract class AbstractArrayStorageTest extends  AbstractStorageTest{
     public void saveOverFlow() throws Exception {
         try {
             for (int i = 4; i <= AbstractArrayStorage.STORAGE_LIMIT; i++) {
-                storage.save(new Resume());
+                storage.save(new Resume("Name" + i));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        storage.save(new Resume());
+        storage.save(new Resume("Overflow"));
     }
 }
