@@ -1,5 +1,6 @@
 package com.urise.webapp.model;
 
+import java.io.Serializable;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Objects;
@@ -11,7 +12,8 @@ import java.util.UUID;
 //public class Resume implements Comparable<Resume> {
     // Комперибл для применения в сортед АррэейСторедж. Для сравнения резюмешек
 
-public class Resume implements Comparable<Resume> {
+public class Resume implements Comparable<Resume>, Serializable {
+    private final static long serialVersionUID = 1L;
     // Unique identifier
     private final String uuid;
     private final String fullName;

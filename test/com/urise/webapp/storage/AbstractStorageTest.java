@@ -7,6 +7,7 @@ import com.urise.webapp.model.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
@@ -17,21 +18,25 @@ import static org.junit.Assert.*;
  * Created by OK on 12.11.2016.
  */
 public abstract class AbstractStorageTest {
+    protected static final File STORAGE_DIR = new File ("D:\\Java\\resume-storage\\storage");
     protected Storage storage;
 
-    private final static String UUID_1 = "uuid1";
-    private static final Resume R1 = new Resume(UUID_1, "Name1");
+   private final static String UUID_1 = "uuid1";
+   private final static String UUID_2 = "uuid2";
+   private final static String UUID_3 = "uuid3";
+   private final static String UUID_4 = "uuid4";
 
-    private final static String UUID_2 = "uuid2";
-    private static final Resume R2 = new Resume(UUID_2, "Name2");
-
-    private final static String UUID_3 = "uuid3";
-    private static final Resume R3 = new Resume(UUID_3, "Name3");
-
-    private final static String UUID_4 = "uuid4";
-    private static final Resume R4 = new Resume(UUID_4, "Name4");
+    private static final Resume R1;
+    private static final Resume R2;
+    private static final Resume R3;
+    private static final Resume R4;
 
     static{
+        R1 = new Resume(UUID_1, "Name1");
+        R2 = new Resume(UUID_2, "Name2");
+        R3 = new Resume(UUID_3, "Name3");
+        R4 = new Resume(UUID_4, "Name4");
+
         R1.addContact(ContactType.MAIL, "mail@me.com");
         R1.addContact(ContactType.PHONE, "911");
         R1.addSection(SectionType.OBJECTIVE, new TextSection("Objective1"));
@@ -98,7 +103,7 @@ public abstract class AbstractStorageTest {
     public void update() throws Exception {
         Resume newResume = new Resume(UUID_1, "New Name1");
         storage.update(newResume);
-        assertTrue(newResume == storage.get(UUID_1));
+        assertTrue(newResume.equals(storage.get(UUID_1)));
     }
 
     @Test

@@ -1,5 +1,6 @@
 package com.urise.webapp.model;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -8,6 +9,8 @@ import java.util.Objects;
  * Created by OK on 21.02.2017.
  */
 public class OrganizationSection extends Section {
+    private final static long serialVersionUID = 1L;
+
     private final List<Organization> organizations;
 
     public OrganizationSection (Organization... organizations){ this(Arrays.asList(organizations));}
