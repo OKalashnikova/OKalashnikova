@@ -39,11 +39,12 @@ public abstract class AbstractStorageTest {
 
         R1.addContact(ContactType.MAIL, "mail@me.com");
         R1.addContact(ContactType.PHONE, "911");
+/*
         R1.addSection(SectionType.OBJECTIVE, new TextSection("Objective1"));
         R1.addSection(SectionType.PERSONAL, new TextSection("Personal data"));
         R1.addSection(SectionType.ACHIEVEMENT, new ListSection("Achivment11", "Achivement12", "Achivement13"));
         R1.addSection(SectionType.QUALIFICATIONS, new ListSection("Java", "SQL", "JavaScript"));
-        R1.addSection(SectionType.EXPERIENCE,
+      R1.addSection(SectionType.EXPERIENCE,
                 new OrganizationSection(
                     new Organization("Organization11", "http//: Organization11.ua",
                     new Organization.Position(2005, Month.JANUARY, "position", "contain1"),
@@ -59,6 +60,7 @@ public abstract class AbstractStorageTest {
                 new OrganizationSection(
                         new Organization("Organization2", "http//: Organization2.ua",
                                 new Organization.Position(2015, Month.JANUARY, "position", "contain1"))));
+     */
     }
 
     protected AbstractStorageTest(Storage storage) {
