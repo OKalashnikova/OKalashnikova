@@ -66,6 +66,7 @@ public class MainConcurrency {
         ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 //        CompletionService completionService = new ExecutorCompletionService(executorService);
 
+
 //         List<Thread> threads = new ArrayList<>();
         for (int i = 0; i < THREAD_NUMBER; i++) {
             Future<Integer> future = executorService.submit(() -> {
