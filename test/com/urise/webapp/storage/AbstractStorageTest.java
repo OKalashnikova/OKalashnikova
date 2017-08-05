@@ -12,8 +12,10 @@ import java.io.File;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
+
 
 /**
  * Created by OK on 12.11.2016.
@@ -22,10 +24,10 @@ public abstract class AbstractStorageTest {
     protected static final File STORAGE_DIR = Config.get().getStorageDir();
     protected Storage storage;
 
-   private final static String UUID_1 = "uuid1";
-   private final static String UUID_2 = "uuid2";
-   private final static String UUID_3 = "uuid3";
-   private final static String UUID_4 = "uuid4";
+   private static final String UUID_1 = UUID.randomUUID().toString();
+   private static final String UUID_2 = UUID.randomUUID().toString();
+   private static final String UUID_3 = UUID.randomUUID().toString();
+   private static final String UUID_4 = UUID.randomUUID().toString();
 
     private static final Resume R1;
     private static final Resume R2;
@@ -101,6 +103,7 @@ public abstract class AbstractStorageTest {
         assertEquals(3, list.size());
         assertEquals(list, Arrays.asList(R1, R2, R3));
     }
+
 
     @Test
     public void update() throws Exception {
