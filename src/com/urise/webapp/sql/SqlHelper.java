@@ -32,4 +32,20 @@ public class SqlHelper {
                 throw ExceptionUtil.convertExeption(e);
         }
     }
+
+    public <T> T transactionalExecute(SqlTransaction<T> executor) {
+        try (Connection conn = connectionFactory.getConnection()) {
+            try {
+                conn.setAutoCommit(false);
+                T res = executor.execute(conn);
+                conn.commit();
+                return res;
+            } catch (SQLException e) {
+                conn.rollback();
+                throw ExceptionUtil.convertExeption(e);
+            }
+        } catch (SQLException e) {
+                throw new StorageException(e);
+        }
+    }
 }
