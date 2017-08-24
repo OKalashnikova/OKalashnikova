@@ -11,6 +11,7 @@ import org.junit.Test;
 import java.io.File;
 import java.time.Month;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -42,6 +43,8 @@ public abstract class AbstractStorageTest {
 
         R1.addContact(ContactType.MAIL, "mail@me.com");
         R1.addContact(ContactType.PHONE, "911");
+        R4.addContact(ContactType.PHONE, "44444444");
+        R4.addContact(ContactType.SKYPE, "Skype");
 /*
         R1.addSection(SectionType.OBJECTIVE, new TextSection("Objective1"));
         R1.addSection(SectionType.PERSONAL, new TextSection("Personal data"));
@@ -101,13 +104,18 @@ public abstract class AbstractStorageTest {
     public void getAllSorted() throws Exception {
         List<Resume> list = storage.getAllSorted();
         assertEquals(3, list.size());
-        assertEquals(list, Arrays.asList(R1, R2, R3));
+        List<Resume> sortedResumes = Arrays.asList(R1, R2, R3);
+        Collections.sort(sortedResumes);
+        assertEquals(sortedResumes, list);
     }
 
 
     @Test
     public void update() throws Exception {
-        Resume newResume = new Resume(UUID_1, "New Name1");
+        Resume newResume = new Resume(UUID_1, "New Name");
+        R1.addContact(ContactType.MAIL, "mail@google.com");
+        R1.addContact(ContactType.SKYPE, "NewSkype");
+        R1.addContact(ContactType.MOBILE, "+3 8097 9797979");
         storage.update(newResume);
         assertTrue(newResume.equals(storage.get(UUID_1)));
     }
