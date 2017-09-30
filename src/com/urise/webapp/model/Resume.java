@@ -65,6 +65,10 @@ public class Resume implements Comparable<Resume>, Serializable {
         return sections.get(type);
         }
 
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
     public void addContact(ContactType type, String value){contacts.put(type, value);}
     public void addSection(SectionType type, Section section){sections.put(type, section);}
 // Когда создаем конструктор для Резюме с вводом uuid - сеттеры уже не нужны. Их можно удалить
@@ -136,6 +140,8 @@ public class Resume implements Comparable<Resume>, Serializable {
         int cmp = fullName.compareTo(o.fullName);
         return cmp != 0 ? cmp : uuid.compareTo(o.uuid);
     }
+
+
 
 //    @Override
 //    public int compareTo(Resume o) {

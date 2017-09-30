@@ -7,6 +7,8 @@
   Time: 22:48
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -17,26 +19,30 @@
 <body>
 <jsp:include page="fragments/header.jsp"/>
 <section>
-    <table border="1" cellpadding="8" cellspasing="0">
-        <tr>
-            <th>Имя</th>
-            <th>Email</th>
-        </tr>
-        <%
-        for (Resume resume : (List<Resume>) request.getAttribute("resumes")) {
-        %>
-
-                <tr>
-                    <td>
-                        <a href="resume?uuid=<%=resume.getUuid()%>"><%=resume.getFullName()%></a></td>
-                    <td><%=resume.getContact(ContactType.MAIL)%></td>
-                </tr>
-        <%
-            }
-        %>
-
+<table border="1" cellpadding="8" cellspasing="0">
+<tr>
+    <th>Имя</th>
+    <th>Email</th>
+    <th></th>
+    <th></th>
+</tr>
+<%--<%--%>
+<%--for (Resume resume : (List<Resume>) request.getAttribute("resumes")) {--%>
+<%--%>--%>
+<c:forEach items="${resumes}" var="resume">
+    <jsp:useBean id="resume" type="com.urise.webapp.model.Resume"/>
+    <tr>
+        <td><a href="resume?uuid=${resume.uuid}&action=view">${resume.fullName}</a></td>
+        <td><%=ContactType.MAIL.toHtml(resume.getContact(ContactType.MAIL))%></td>
+        <td><a href="resume?uuid=${resume.uuid}&action=delete"><img src="img/delete.png" alt="Delete"></a></td>
+        <td><a href="resume?uuid=${resume.uuid}&action=edit"><img src="img/pencil.png" alt="Edit"></a></td>
+    </tr>
+    <%--<%--%>
+    <%--}--%>
+    <%--%>--%>
+</c:forEach>
     </table>
-</section>
-<jsp:include page="fragments/footer.jsp"/>
-</body>
-</html>
+    </section>
+    <jsp:include page="fragments/footer.jsp"/>
+    </body>
+    </html>
