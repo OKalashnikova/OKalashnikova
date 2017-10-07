@@ -27,23 +27,23 @@ public class TestData {
         R4.addContact(ContactType.PHONE, "44444444");
         R4.addContact(ContactType.SKYPE, "Skype");
 
-        R1.addSection(SectionType.OBJECTIVE, new TextSection("Objective1"));
-        R1.addSection(SectionType.PERSONAL, new TextSection("Personal data"));
-        R1.addSection(SectionType.ACHIEVEMENT, new ListSection("Achivment11", "Achivement12", "Achivement13"));
-        R1.addSection(SectionType.QUALIFICATIONS, new ListSection("Java", "SQL", "JavaScript"));
-      R1.addSection(SectionType.EXPERIENCE,
+        R1.setSection(SectionType.OBJECTIVE, new TextSection("Objective1"));
+        R1.setSection(SectionType.PERSONAL, new TextSection("Personal data"));
+        R1.setSection(SectionType.ACHIEVEMENT, new ListSection("Achivment11", "Achivement12", "Achivement13"));
+        R1.setSection(SectionType.QUALIFICATIONS, new ListSection("Java", "SQL", "JavaScript"));
+      R1.setSection(SectionType.EXPERIENCE,
                 new OrganizationSection(
                     new Organization("Organization11", "http//: Organization11.ua",
                     new Organization.Position(2005, Month.JANUARY, "position", "contain1"),
                     new Organization.Position(2001, Month.MARCH, 2005, Month.JANUARY, "position2", "contain2"))));
-        R1.addSection(SectionType.EDUCATION,
+        R1.setSection(SectionType.EDUCATION,
                 new OrganizationSection(
                         new Organization("Institute", null,
                                 new Organization.Position(1996, Month.JANUARY, 2000, Month.DECEMBER, "aspirant", null),
                                 new Organization.Position(2001, Month.MARCH, 2005, Month.JANUARY, "position2", "content2"))));
         R2.addContact(ContactType.SKYPE, "OK");
         R2.addContact(ContactType.PHONE, "123");
-        R1.addSection(SectionType.EXPERIENCE,
+        R1.setSection(SectionType.EXPERIENCE,
                 new OrganizationSection(
                         new Organization("Organization2", "http//: Organization2.ua",
                                 new Organization.Position(2015, Month.JANUARY, "position", "contain1"))));
