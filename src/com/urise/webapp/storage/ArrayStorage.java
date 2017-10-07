@@ -9,12 +9,7 @@ import java.util.Objects;
 /**
  * Array based storage for Resumes
  */
-public class ArrayStorage extends AbstractArrayStorage{
-
-//   private int size = 0;
-//    public int getSize() {
-//        return size;
-//    }
+public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
     protected void fillDeletedElement(int index) {
@@ -26,7 +21,7 @@ public class ArrayStorage extends AbstractArrayStorage{
         storage[size] = r;
     }
 
-    public Integer getSearchKey(String uuid) {
+    protected Integer getSearchKey(String uuid) {
         for (int i = 0; i < size; i++) {
             if (uuid.equals(storage[i].getUuid())) {
                 return i;
@@ -34,15 +29,4 @@ public class ArrayStorage extends AbstractArrayStorage{
         }
         return -1;
     }
-
-
-
-
-
-    /**
-     * @return array, contains only Resumes in storage (without null)
-     */
-
-
-
 }

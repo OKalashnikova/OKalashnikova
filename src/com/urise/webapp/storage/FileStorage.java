@@ -13,21 +13,18 @@ import java.util.Objects;
  * Created by OK on 22.02.2017.
  */
 public class FileStorage extends AbstractStorage<File> {
-
     private File directory;
-    private StreamSerializer streamSerializer;
 
-    //protected abstract void doWrite(Resume r, OutputStream os) throws IOException;
-   // protected abstract Resume doRead(InputStream is) throws IOException;
+    private StreamSerializer streamSerializer;
 
     protected FileStorage(File directory, StreamSerializer streamSerializer) {
         Objects.requireNonNull(directory, "directory must not be null");
 
         this.streamSerializer = streamSerializer;
-        if(!directory.isDirectory()){
+        if (!directory.isDirectory()) {
             throw new IllegalArgumentException(directory.getAbsolutePath() + " is not directory");
         }
-        if(!directory.canRead() || !directory.canWrite()){
+        if (!directory.canRead() || !directory.canWrite()) {
             throw new IllegalArgumentException(directory.getAbsolutePath() + " is not readable/writable");
         }
         this.directory = directory;
@@ -36,26 +33,24 @@ public class FileStorage extends AbstractStorage<File> {
     @Override
     public void clear() {
         File[] files = directory.listFiles();
-        if(files != null) {
-            for (File file : files){
+        if (files != null) {
+            for (File file : files) {
                 doDelete(file);
             }
         }
-
     }
 
     @Override
-    public int getSize()
-    {
+    public int getSize() {
         String[] list = directory.list();
-        if (list == null){
-            throw new StorageException("Directory read arror");
+        if (list == null) {
+            throw new StorageException("Directory read error");
         }
         return list.length;
     }
 
     @Override
-    public File getSearchKey(String uuid) {
+    protected File getSearchKey(String uuid) {
         return new File(directory, uuid);
     }
 
@@ -78,18 +73,9 @@ public class FileStorage extends AbstractStorage<File> {
         try {
             file.createNewFile();
         } catch (IOException e) {
-           throw new StorageException("Couldn't create file " + file.getAbsolutePath(), file.getName(), e);
+            throw new StorageException("Couldn't create file " + file.getAbsolutePath(), file.getName(), e);
         }
         doUpdate(r, file);
-    }
-
-
-
-    @Override
-    protected void doDelete(File file) {
-        if(!file.delete()){
-            throw new StorageException("File delete error", file.getName());
-        }
     }
 
     @Override
@@ -97,19 +83,25 @@ public class FileStorage extends AbstractStorage<File> {
         try {
             return streamSerializer.doRead(new BufferedInputStream(new FileInputStream(file)));
         } catch (IOException e) {
-            throw new StorageException("File write error", file.getName(), e);
+            throw new StorageException("File read error", file.getName(), e);
         }
     }
 
     @Override
-    protected List<Resume> doCopyAll()
-    {
+    protected void doDelete(File file) {
+        if (!file.delete()) {
+            throw new StorageException("File delete error", file.getName());
+        }
+    }
+
+    @Override
+    protected List<Resume> doCopyAll() {
         File[] files = directory.listFiles();
-        if (files == null){
+        if (files == null) {
             throw new StorageException("Directory read error");
         }
         List<Resume> list = new ArrayList<>(files.length);
-        for( File file : files){
+        for (File file : files) {
             list.add(doGet(file));
         }
         return list;

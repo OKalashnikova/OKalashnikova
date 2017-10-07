@@ -15,7 +15,7 @@ public class LocalDateAdapter extends XmlAdapter<String, LocalDate> {
     }
 
     @Override
-    public String marshal (LocalDate ld) throws Exception{
+    public String marshal(LocalDate ld) throws Exception {
         return ld.toString();
     }
 }

@@ -33,4 +33,3 @@ public class JsonSectionAdapter<T> implements JsonSerializer<T>, JsonDeserialize
         return retValue;
     }
 }
-

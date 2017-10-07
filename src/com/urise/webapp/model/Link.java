@@ -8,10 +8,9 @@ import java.util.Objects;
 /**
  * Created by OK on 21.02.2017.
  */
-
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Link implements Serializable {
-    private final static long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     private String name;
     private String url;
@@ -22,7 +21,7 @@ public class Link implements Serializable {
     public Link(String name, String url) {
         Objects.requireNonNull(name, "name must not be null");
         this.name = name;
-        this.url = url;
+        this.url = url == null ? "" : url;
     }
 
     public String getName() {
@@ -47,6 +46,7 @@ public class Link implements Serializable {
 
         if (!name.equals(link.name)) return false;
         return url != null ? url.equals(link.url) : link.url == null;
+
     }
 
     @Override
@@ -55,5 +55,5 @@ public class Link implements Serializable {
         result = 31 * result + (url != null ? url.hashCode() : 0);
         return result;
     }
-
 }
+

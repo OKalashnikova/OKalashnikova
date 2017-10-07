@@ -22,11 +22,11 @@ import static org.junit.Assert.*;
 /**
  * Created by OK on 12.11.2016.
  */
+
 public abstract class AbstractStorageTest {
     protected static final File STORAGE_DIR = Config.get().getStorageDir();
+
     protected Storage storage;
-
-
 
     protected AbstractStorageTest(Storage storage) {
         this.storage = storage;
@@ -41,7 +41,7 @@ public abstract class AbstractStorageTest {
     }
 
     @Test
-    public void getSize() throws Exception {
+    public void size() throws Exception {
         assertSize(3);
     }
 
@@ -52,12 +52,19 @@ public abstract class AbstractStorageTest {
     }
 
     @Test
-    public void get() throws Exception {
-        assertGet(R1);
-        assertGet(R2);
-        assertGet(R3);
+    public void update() throws Exception {
+        Resume newResume = new Resume(UUID_1, "New Name");
+        newResume.setContact(ContactType.MAIL, "mail1@google.com");
+        newResume.setContact(ContactType.SKYPE, "NewSkype");
+        newResume.setContact(ContactType.MOBILE, "+7 921 222-22-22");
+        storage.update(newResume);
+        assertTrue(newResume.equals(storage.get(UUID_1)));
     }
 
+    @Test(expected = NotExistStorageException.class)
+    public void updateNotExist() throws Exception {
+        storage.get("dummy");
+    }
 
     @Test
     public void getAllSorted() throws Exception {
@@ -68,23 +75,16 @@ public abstract class AbstractStorageTest {
         assertEquals(sortedResumes, list);
     }
 
-
-    @Test
-    public void update() throws Exception {
-        Resume newResume = new Resume(UUID_1, "New Name");
-        R1.addContact(ContactType.MAIL, "mail@google.com");
-        R1.addContact(ContactType.SKYPE, "NewSkype");
-        R1.addContact(ContactType.MOBILE, "+3 8097 9797979");
-        storage.update(newResume);
-        assertTrue(newResume.equals(storage.get(UUID_1)));
-    }
-
     @Test
     public void save() throws Exception {
         storage.save(R4);
         assertSize(4);
         assertGet(R4);
-        //       assertEquals(RESUME_4, storage.get(UUID_4));
+    }
+
+    @Test(expected = ExistStorageException.class)
+    public void saveExist() throws Exception {
+        storage.save(R1);
     }
 
     @Test(expected = NotExistStorageException.class)
@@ -94,34 +94,28 @@ public abstract class AbstractStorageTest {
         storage.get(UUID_1);
     }
 
-    @Test(expected = ExistStorageException.class)
-    public void saveExist() throws Exception {
-        storage.save(R1);
+    @Test(expected = NotExistStorageException.class)
+    public void deleteNotExist() throws Exception {
+        storage.delete("dummy");
     }
 
-
-//    @Test(expected = NotExistStorageException.class)
-//    public void updateNotExist() throws Exception {
-//        storage.save(RESUME_1);
-//    }
+    @Test
+    public void get() throws Exception {
+        assertGet(R1);
+        assertGet(R2);
+        assertGet(R3);
+    }
 
     @Test(expected = NotExistStorageException.class)
     public void getNotExist() throws Exception {
         storage.get("dummy");
     }
 
-    @Test(expected = NotExistStorageException.class)
-    public void deleteNotExist() throws Exception {
-        storage.delete("dummy");
+    private void assertGet(Resume r) {
+        assertEquals(r, storage.get(r.getUuid()));
     }
 
     private void assertSize(int size) {
         assertEquals(size, storage.getSize());
     }
-
-    private void assertGet(Resume r) {
-        assertEquals(r, storage.get(r.getUuid()));
-    }
-
-
 }

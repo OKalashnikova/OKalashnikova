@@ -3,6 +3,7 @@ package com.urise.webapp.model;
 /**
  * Created by OK on 03.02.2017.
  */
+
 public enum SectionType {
     OBJECTIVE("Позиция"),
     PERSONAL("Личные качества"),
@@ -21,3 +22,4 @@ public enum SectionType {
         return title;
     }
 }
+

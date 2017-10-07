@@ -10,7 +10,7 @@ import java.io.OutputStream;
  * Created by OK on 23.04.2017.
  */
 public interface StreamSerializer {
-    void doWrite (Resume r, OutputStream os) throws IOException;
+    void doWrite(Resume r, OutputStream os) throws IOException;
 
     Resume doRead(InputStream is) throws IOException;
 }

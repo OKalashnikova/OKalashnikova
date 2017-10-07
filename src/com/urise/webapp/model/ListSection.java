@@ -8,7 +8,7 @@ import java.util.Objects;
  * Created by OK on 21.02.2017.
  */
 public class ListSection extends Section {
-    private final static long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     public static final ListSection EMPTY = new ListSection("");
 
@@ -30,12 +30,10 @@ public class ListSection extends Section {
         return items;
     }
 
-
     @Override
     public String toString() {
         return items.toString();
     }
-
 
     @Override
     public boolean equals(Object o) {
@@ -45,6 +43,7 @@ public class ListSection extends Section {
         ListSection that = (ListSection) o;
 
         return items.equals(that.items);
+
     }
 
     @Override

@@ -15,21 +15,14 @@ public class SqlHelper {
 
     public void execute(String sql) {
         execute(sql, PreparedStatement::execute);
-//        try (Connection conn = connectionFactory.getConnection();
-//             PreparedStatement ps = conn.prepareStatement(sql)
-//        ) {
-//            ps.execute();
-//        } catch (SQLException e) {
-//            throw new StorageException(e);
-//        }
     }
 
-    public <T> T execute (String sql, SqlExecutor<T> executor){
-        try(Connection conn = connectionFactory.getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql)){
+    public <T> T execute(String sql, SqlExecutor<T> executor) {
+        try (Connection conn = connectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
             return executor.execute(ps);
-        }catch (SQLException e){
-                throw ExceptionUtil.convertExeption(e);
+        } catch (SQLException e) {
+            throw ExceptionUtil.convertException(e);
         }
     }
 
@@ -42,10 +35,10 @@ public class SqlHelper {
                 return res;
             } catch (SQLException e) {
                 conn.rollback();
-                throw ExceptionUtil.convertExeption(e);
+                throw ExceptionUtil.convertException(e);
             }
         } catch (SQLException e) {
-                throw new StorageException(e);
+            throw new StorageException(e);
         }
     }
 }

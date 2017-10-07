@@ -24,7 +24,7 @@ import static com.urise.webapp.util.DateUtil.of;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Organization implements Serializable {
-    private final static long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     public static final Organization EMPTY = new Organization("", "", Position.EMPTY);
 
@@ -34,9 +34,7 @@ public class Organization implements Serializable {
     public Organization() {
     }
 
-
-
-    public Organization(String name, String url, Position... positions){
+    public Organization(String name, String url, Position... positions) {
         this(new Link(name, url), Arrays.asList(positions));
     }
 
@@ -69,11 +67,15 @@ public class Organization implements Serializable {
 
     @Override
     public String toString() {
-        return "Organization(" + "homePage=" + homePage + ", " + positions +')';
+        return "Organization(" + homePage + "," + positions + ')';
     }
 
+    /**
+     * gkislin
+     * 28.07.2016
+     */
     @XmlAccessorType(XmlAccessType.FIELD)
-    public static class Position implements Serializable{
+    public static class Position implements Serializable {
         public static final Position EMPTY = new Position();
 
         @XmlJavaTypeAdapter(LocalDateAdapter.class)
@@ -86,28 +88,39 @@ public class Organization implements Serializable {
         public Position() {
         }
 
-        public Position(int startYear, Month startMonth, String title, String description){
+        public Position(int startYear, Month startMonth, String title, String description) {
             this(of(startYear, startMonth), NOW, title, description);
         }
 
-        public Position(int startYear, Month startMonth, int endYear, Month endMonth, String title, String description){
+        public Position(int startYear, Month startMonth, int endYear, Month endMonth, String title, String description) {
             this(of(startYear, startMonth), of(endYear, endMonth), title, description);
         }
 
         public Position(LocalDate startDate, LocalDate endDate, String title, String description) {
-            this.startDate = startDate;
-            this.endDate = endDate;
-            this.title = title;
-            this.description = description;
             Objects.requireNonNull(startDate, "startDate must not be null");
             Objects.requireNonNull(endDate, "endDate must not be null");
             Objects.requireNonNull(title, "title must not be null");
+            this.startDate = startDate;
+            this.endDate = endDate;
+            this.title = title;
+            this.description = description == null ? "" : description;
         }
 
-        public LocalDate getStartDate(){return startDate;}
-        public LocalDate getEndDate() { return endDate; }
-        public String getTitle() { return title; }
-        public String getDescription() { return description; }
+        public LocalDate getStartDate() {
+            return startDate;
+        }
+
+        public LocalDate getEndDate() {
+            return endDate;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getDescription() {
+            return description;
+        }
 
         @Override
         public boolean equals(Object o) {
@@ -115,8 +128,8 @@ public class Organization implements Serializable {
             if (o == null || getClass() != o.getClass()) return false;
             Position position = (Position) o;
             return Objects.equals(startDate, position.startDate) &&
-                    Objects.equals(endDate, position.endDate)&&
-                    Objects.equals(title, position.title)&&
+                    Objects.equals(endDate, position.endDate) &&
+                    Objects.equals(title, position.title) &&
                     Objects.equals(description, position.description);
         }
 
@@ -127,12 +140,7 @@ public class Organization implements Serializable {
 
         @Override
         public String toString() {
-            return "Position{" +
-                    "startDate=" + startDate +
-                    ", endDate=" + endDate +
-                    ", title='" + title + '\'' +
-                    ", description='" + description + '\'' +
-                    '}';
+            return "Position(" + startDate + ',' + endDate + ',' + title + ',' + description + ')';
         }
     }
 }

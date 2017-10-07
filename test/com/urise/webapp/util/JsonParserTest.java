@@ -26,5 +26,4 @@ public class JsonParserTest {
         Section section2 = JsonParser.read(json, Section.class);
         Assert.assertEquals(section1, section2);
     }
-
 }
